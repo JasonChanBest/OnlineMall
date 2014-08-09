@@ -4,9 +4,12 @@ import com.mall.orm.user.User;
 import com.mall.service.user.IUserService;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
@@ -32,13 +35,14 @@ public class UserAction {
     }
 
     @RequestMapping("/regist")
-    public String  regist(@Validated User user, String confirmPwd , HttpSession session , Errors errors){
+    public String  regist(@Validated User user, @RequestParam String confirmPwd , HttpSession session, Model model , Errors errors ){
 
         if(errors.hasErrors()){
             return REGIST_JSP;
         }
 
         if(!user.getLoginPwd().equals(confirmPwd)){
+            model.addAttribute("confirmPwdErr" , "两次输入密码不一致");
             return REGIST_JSP;
         }
         User _user = userService.getUserByName(user.getLoginName());
@@ -49,7 +53,7 @@ public class UserAction {
         Serializable id = userService.save(user);
         session.setAttribute("id" , id);
 
-        return "login";
+        return INDEX_JSP;
     }
 
     public String loginInit(HttpSession session){
@@ -60,7 +64,24 @@ public class UserAction {
         return LOGIN_JSP;
     }
 
-    public String login(@Validated User user){
+    public String login(@Validated User user , HttpSession session , Model model , Errors errors){
+        if(errors.hasErrors()){
+            return LOGIN_JSP;
+        }
+
+        User _user = userService.getUserByName(user.getLoginName());
+        if(_user == null){
+            model.addAttribute("loginNameErr" , "用户名不存在");
+            return LOGIN_JSP;
+        }
+
+        if(!user.getLoginPwd().equals(_user.getLoginPwd())){
+            model.addAttribute("loginPwdErr" , "密码错误");
+            return LOGIN_JSP;
+        }
+
+        session.setAttribute("id" , _user.getId());
+
         return INDEX_JSP;
     }
 }

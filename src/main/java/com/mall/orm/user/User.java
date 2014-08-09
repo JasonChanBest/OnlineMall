@@ -39,4 +39,12 @@ public class User{
     public void setLoginPwd(String loginPwd) {
         this.loginPwd = loginPwd;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 }
