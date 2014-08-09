@@ -5,14 +5,14 @@ import com.mall.service.user.IUserService;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.Errors;
-import org.springframework.validation.annotation.Validated;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 import java.io.Serializable;
 
 /**
@@ -35,9 +35,9 @@ public class UserAction {
     }
 
     @RequestMapping("/regist")
-    public String  regist(@Validated User user, @RequestParam String confirmPwd , HttpSession session, Model model , Errors errors ){
+    public String  regist(@Valid @ModelAttribute("user") User user , BindingResult result , @RequestParam String confirmPwd , HttpSession session , Model model){
 
-        if(errors.hasErrors()){
+        if(result.hasErrors()){
             return REGIST_JSP;
         }
 
@@ -64,8 +64,8 @@ public class UserAction {
         return LOGIN_JSP;
     }
 
-    public String login(@Validated User user , HttpSession session , Model model , Errors errors){
-        if(errors.hasErrors()){
+    public String login(@Valid User user , HttpSession session , Model model , BindingResult result){
+        if(result.hasErrors()){
             return LOGIN_JSP;
         }
 
