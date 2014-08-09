@@ -36,7 +36,6 @@ public class UserAction {
 
         if(errors.hasErrors()){
             return REGIST_JSP;
-            errors.
         }
 
         if(!user.getLoginPwd().equals(confirmPwd)){
