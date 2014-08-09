@@ -6,6 +6,7 @@ import com.mall.service.user.IUserService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.io.Serializable;
 
 /**
  * Created by jayson on 2014/8/8.
@@ -17,5 +18,10 @@ public class UserService implements IUserService {
     @Override
     public User getUserByName(String loginName) {
         return userDao.getUserByName(loginName);
+    }
+
+    @Override
+    public Serializable save(User user) {
+        return userDao.save(user);
     }
 }

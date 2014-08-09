@@ -6,6 +6,7 @@ import org.springframework.orm.hibernate3.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -19,5 +20,10 @@ public class UserDao implements IUserDao {
     public User getUserByName(String loginName) {
         List<User> list = hibernateTemplate.find("from User where loginName=?" , loginName);
         return list.isEmpty() ? null : list.get(0);
+    }
+
+    @Override
+    public Serializable save(User user) {
+        return hibernateTemplate.save(user);
     }
 }
