@@ -13,7 +13,7 @@
             <tr>
                 <td>登陆名：</td>
                 <td>
-                    <input type="text" placeholder="请输入登陆名" name="user.loginName"/>
+                    <input type="text" placeholder="请输入登陆名" name="loginName" value="${user.loginName}"/>
                 </td>
                 <td>
                     <sp:errors path="user.loginName"/>
@@ -22,7 +22,7 @@
             <tr>
                 <td>密码：</td>
                 <td>
-                    <input type="text" placeholder="请输入密码" name="user.loginPwd"/>
+                    <input type="password" placeholder="请输入密码" name="loginPwd"/>
                 </td>
                 <td>
                     <sp:errors path="user.loginPwd"/>
@@ -31,10 +31,10 @@
             <tr>
                 <td>确认密码：</td>
                 <td>
-                    <input type="text" placeholder="请输入确认密码" name="confirmPwd"/>
+                    <input type="password" placeholder="请输入确认密码" name="confirmPwd"/>
                 </td>
                 <td>
-                    <c:out value="${confirmPwdErr}"/>
+                    <sp:errors path="confirmPwd"/>
                 </td>
             </tr>
             <tr>

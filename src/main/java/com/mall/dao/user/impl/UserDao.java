@@ -14,7 +14,7 @@ import java.util.List;
  */
 @Repository("UserDao")
 public class UserDao implements IUserDao {
-    @Resource(name = "hibernateTemplate")
+    @Resource(name = "HibernateTemplate")
     private HibernateTemplate hibernateTemplate;
     @Override
     public User getUserByName(String loginName) {

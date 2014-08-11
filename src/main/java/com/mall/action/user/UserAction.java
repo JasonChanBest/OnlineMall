@@ -2,10 +2,12 @@ package com.mall.action.user;
 
 import com.mall.orm.user.User;
 import com.mall.service.user.IUserService;
+import com.mall.util.Identity;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -25,7 +27,6 @@ public class UserAction {
     private static final String REGIST_JSP = "jsp/user/regist";
     private static final String LOGIN_JSP = "jsp/user/login";
     private static final String INDEX_JSP = "jsp/index";
-
     @Resource(name = "UserService")
     private IUserService userService;
 
@@ -47,11 +48,12 @@ public class UserAction {
         }
         User _user = userService.getUserByName(user.getLoginName());
         if(_user != null){
+            result.addError(new FieldError("user", "loginName", "用户名已存在"));
             return REGIST_JSP;
         }
 
         Serializable id = userService.save(user);
-        session.setAttribute("id" , id);
+        session.setAttribute(Identity.user.getIdentity() , id);
 
         return INDEX_JSP;
     }
@@ -80,7 +82,7 @@ public class UserAction {
             return LOGIN_JSP;
         }
 
-        session.setAttribute("id" , _user.getId());
+        session.setAttribute(Identity.user.getIdentity() , _user.getId());
 
         return INDEX_JSP;
     }

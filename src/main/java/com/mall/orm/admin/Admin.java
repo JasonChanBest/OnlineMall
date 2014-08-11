@@ -1,6 +1,5 @@
-package com.mall.orm.user;
+package com.mall.orm.admin;
 
-import com.mall.orm.cart.Cart;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
@@ -8,11 +7,11 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 /**
- * Created by jayson on 2014/8/8.
+ * Created by Jayson on 2014/8/10.
  */
 @Entity
-@Table(name = "user")
-public class User{
+@Table(name = "admin")
+public class Admin {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -22,15 +21,19 @@ public class User{
     @Column(name = "login_name")
     private String loginName;
 
-    @NotNull(message = "密码必须为6－20位字母或数字组合")
-    @Pattern(regexp = "[0-9,a-z,A-Z]{6,20}" , message = "密码必须为6－20位字母或数字组合")
+    @NotNull(message = "登陆密码不能为空")
+    @Pattern(regexp = "[0-9,a-z,A-Z]{6,20}" , message = "登陆密码必须为6-20位字母或数字组合")
     @Column(name = "login_pwd")
     private String loginPwd;
 
-    @OneToOne(mappedBy = "user")
-    private Cart cart;
+    public int getId() {
+        return id;
+    }
 
-    /**getter、setter方法**/
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public String getLoginName() {
         return loginName;
     }
@@ -45,21 +48,5 @@ public class User{
 
     public void setLoginPwd(String loginPwd) {
         this.loginPwd = loginPwd;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public Cart getCart() {
-        return cart;
-    }
-
-    public void setCart(Cart cart) {
-        this.cart = cart;
     }
 }
