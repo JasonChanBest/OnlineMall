@@ -25,4 +25,14 @@ public class CategoryService implements ICategoryService {
     public List<Category> list() {
         return categoryDao.list();
     }
+
+    @Override
+    public Category get(int id) {
+        return categoryDao.get(id);
+    }
+
+    @Override
+    public void delete(Category category) {
+        categoryDao.delete(category);
+    }
 }

@@ -1,13 +1,3 @@
-<%@ page import="com.mall.orm.category.Category" %>
-<%@ page import="java.util.List" %>
-<%@ page import="java.util.Set" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: Jayson
-  Date: 2014/8/11
-  Time: 1:50
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
 <html>
@@ -15,25 +5,28 @@
     <title></title>
 </head>
 <body>
-    <%!
-       private void display(Category category){
-           Set<Category> categories = category.getCategories();
-           if(categories != null && !categories.isEmpty()){
-
-           }else{
-
-           }
-       }
-    %>
-    <%
-        List<Category> categories = (List<Category>) request.getAttribute("categories");
-        if(categories != null && !categories.isEmpty()){
-            for(Category category : categories){
-                if(category.getCategory() == null){
-                    display(category);
-                }
-            }
-        }
-    %>
+    <div>
+        <table>
+            <tr>
+                <th>名称</th>
+                <th>上级名称</th>
+                <th>操作</th>
+            </tr>
+            <c:forEach items="categories" var="category">
+                <tr>
+                    <td>
+                        ${category.name}
+                    </td>
+                    <td>
+                        ${category.parent.name}
+                    </td>
+                    <td>
+                        <a href="#">编辑</a>
+                        <a href="#">删除</a>
+                    </td>
+                </tr>
+            </c:forEach>
+        </table>
+    </div>
 </body>
 </html>

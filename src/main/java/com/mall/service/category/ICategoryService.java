@@ -11,4 +11,6 @@ import java.util.List;
 public interface ICategoryService {
     public Serializable save(Category category);
     public List<Category> list();
+    public Category get(int id);
+    public void delete(Category category);
 }

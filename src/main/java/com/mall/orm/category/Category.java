@@ -20,9 +20,9 @@ public class Category {
     private String name;
     @ManyToOne(fetch = FetchType.EAGER , cascade = {CascadeType.ALL})
     @JoinColumn(name = "parent_id")
-    private Category category;
+    private Category parent;
 
-    @OneToMany(mappedBy = "category" , fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "parent" , fetch = FetchType.EAGER)
     private Set<Category> categories;
 
     public int getId() {
@@ -41,12 +41,12 @@ public class Category {
         this.name = name;
     }
 
-    public Category getCategory() {
-        return category;
+    public Category getParent() {
+        return parent;
     }
 
-    public void setCategory(Category category) {
-        this.category = category;
+    public void setParent(Category parent) {
+        this.parent = parent;
     }
 
     public Set<Category> getCategories() {

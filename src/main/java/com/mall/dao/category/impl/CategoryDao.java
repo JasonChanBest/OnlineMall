@@ -25,4 +25,14 @@ public class CategoryDao implements ICategoryDao {
     public List<Category> list() {
         return hibernateTemplate.find("from Category");
     }
+
+    @Override
+    public Category get(int id) {
+        return hibernateTemplate.get(Category.class , id);
+    }
+
+    @Override
+    public void delete(Category category) {
+        hibernateTemplate.delete(category);
+    }
 }
