@@ -35,4 +35,9 @@ public class CategoryDao implements ICategoryDao {
     public void delete(Category category) {
         hibernateTemplate.delete(category);
     }
+
+    @Override
+    public void update(Category category) {
+        hibernateTemplate.update(category);
+    }
 }

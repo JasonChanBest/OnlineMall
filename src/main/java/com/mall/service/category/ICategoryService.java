@@ -13,4 +13,5 @@ public interface ICategoryService {
     public List<Category> list();
     public Category get(int id);
     public void delete(Category category);
+    public void update(Category category);
 }

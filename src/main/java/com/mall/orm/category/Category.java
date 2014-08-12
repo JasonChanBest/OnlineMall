@@ -1,5 +1,7 @@
 package com.mall.orm.category;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Set;
@@ -16,13 +18,14 @@ public class Category {
     private int id;
 
     @NotNull
+    @NotEmpty
     @Column(name = "name")
     private String name;
     @ManyToOne(fetch = FetchType.EAGER , cascade = {CascadeType.ALL})
     @JoinColumn(name = "parent_id")
     private Category parent;
 
-    @OneToMany(mappedBy = "parent" , fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "parent" , fetch = FetchType.EAGER , cascade = {CascadeType.ALL})
     private Set<Category> categories;
 
     public int getId() {

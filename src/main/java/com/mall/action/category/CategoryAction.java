@@ -16,16 +16,16 @@ import java.util.List;
  * Created by Jayson on 2014/8/11.
  */
 @Controller("CategoryAction")
-@RequestMapping("/category")
+@RequestMapping("/admin/category")
 public class CategoryAction {
-    private static final String CATEGORY_LIST = "jsp/admin/category_list";
-    private static final String CATEGORY_ADD = "jsp/admin/category_add";
-    private static final String CATEGORY_DELETE = "jsp/admin/category_delete";
+    private static final String CATEGORY_LIST = "jsp/category/list";
+    private static final String CATEGORY_ADD = "jsp/category/add";
+    private static final String CATEGORY_EDIT = "jsp/category/edit";
     @Resource(name = "CategoryService")
     private ICategoryService categoryService;
 
     @RequestMapping("/add")
-    public String add(@Valid @ModelAttribute Category category , BindingResult result , int parentId){
+    public String add(@Valid @ModelAttribute Category category , BindingResult result , int parentId , Model model){
         if(result.hasErrors()){
             return CATEGORY_ADD;
         }
@@ -37,10 +37,15 @@ public class CategoryAction {
         }
         category.setParent(parent);
         categoryService.save(category);
+
+        List<Category> categories = categoryService.list();
+        model.addAttribute("categories" , categories);
         return CATEGORY_ADD;
     }
     @RequestMapping("/addInit")
-    public String addInit(){
+    public String addInit(Model model){
+        List<Category> categories = categoryService.list();
+        model.addAttribute("categories" , categories);
         return CATEGORY_ADD;
     }
     @RequestMapping("/list")
@@ -53,11 +58,25 @@ public class CategoryAction {
     public String delete(int id , Model model){
         Category category = categoryService.get(id);
         if(category == null){
-            //TODO
+            model.addAttribute("categoryErr" , "分类不存在");
+            return CATEGORY_LIST;
         }
         categoryService.delete(category);
         List<Category> categories = categoryService.list();
         model.addAttribute("categories" , categories);
         return CATEGORY_LIST;
+    }
+    @RequestMapping("/editInit")
+    public String editInit(int id , Model model){
+        Category category = categoryService.get(id);
+        model.addAttribute("category" , category);
+        List<Category> categories = categoryService.list();
+        model.addAttribute("categories" , categories);
+        return CATEGORY_EDIT;
+    }
+    @RequestMapping("/edit")
+    public String edit(@Valid @ModelAttribute Category category , BindingResult result , Model model){
+        categoryService.update(category);
+        return CATEGORY_EDIT;
     }
 }
