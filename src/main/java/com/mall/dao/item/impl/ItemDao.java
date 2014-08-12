@@ -18,7 +18,7 @@ public class ItemDao implements IItemDao {
     private HibernateTemplate hibernateTemplate;
     @Override
     public List<Item> list() {
-        return hibernateTemplate.find("from Item");
+        return hibernateTemplate.find("select id , price , name , category  from Item");
     }
 
     @Override
