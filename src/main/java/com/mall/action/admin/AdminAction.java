@@ -50,4 +50,8 @@ public class AdminAction {
 
         return MAIN_JSP;
     }
+    @RequestMapping("/main")
+    public String main(){
+        return MAIN_JSP;
+    }
 }
