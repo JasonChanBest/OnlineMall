@@ -21,6 +21,7 @@ import javax.validation.Valid;
 public class AdminAction {
     private static final String LOGIN_JSP = "jsp/admin/login";
     private static final String MAIN_JSP = "jsp/admin/main";
+    private static final String WELCOME_JSP = "jsp/admin/welcome";
 
     @Resource(name = "AdminService")
     private IAdminService adminService;
@@ -53,5 +54,9 @@ public class AdminAction {
     @RequestMapping("/main")
     public String main(){
         return MAIN_JSP;
+    }
+    @RequestMapping("/welcome")
+    public String welcome(){
+        return WELCOME_JSP;
     }
 }

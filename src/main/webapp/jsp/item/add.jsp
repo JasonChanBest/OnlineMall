@@ -3,39 +3,37 @@
 <html>
 <head>
     <base href="<%=request.getScheme()%>://<%=request.getServerName()%>:<%=request.getServerPort()%><%=request.getContextPath()%>/"/>
-    <script type="text/javascript" src="ueditor/ueditor.config.js"></script>
-    <script type="text/javascript" src="ueditor/ueditor.all.min.js"></script>
+    <link rel="stylesheet" href="thirdpart/bootstrap-3.2.0-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="thirdpart/bootstrap-3.2.0-dist/css/bootstrap-theme.min.css">
+    <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="thirdpart/bootstrap-3.2.0-dist/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript" src="thirdpart/ueditor/ueditor.config.js"></script>
+    <script type="text/javascript" src="thirdpart/ueditor/ueditor.all.min.js"></script>
     <title></title>
 </head>
 <body>
-    <div>
-        <form action="/admin/item/add.do" method="post">
-            <table>
-                <tr>
-                    <td>商品名称：</td>
-                    <td>
-                        <input type="text" value="${item.name}" name="name"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td>商品价格：</td>
-                    <td>
-                        <input type="text" value="${item.price}" name="price"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td>分类：</td>
-                    <td>
-                        <select name="category.id">
-                            <c:forEach items="${categories}" var="category">
-                                <option value="${category.id}">${category.name}</option>
-                            </c:forEach>
-                        </select>
-                    </td>
-                </tr>
-            </table>
+    <div style="width: 80%;max-width: 1000px;margin: 0 auto 0 auto;">
+        <form action="/admin/item/add.do" method="post" role="form">
+            <div class="form-group">
+                <label>商品名称：</label>
+                <input class="form-control" type="text" value="${item.name}" name="name" placeholder="请输入商品名称"/>
+            </div>
+            <div class="form-group">
+                <label>商品价格：</label>
+                <input class="form-control" type="number" value="${item.price}" name="price" placeholder="请输入商品价格"/>
+            </div>
+            <div class="form-group">
+                <label>商品分类：</label>
+                <select class="form-control" name="category.id">
+                    <c:forEach items="${categories}" var="category">
+                        <option value="${category.id}">${category.name}</option>
+                    </c:forEach>
+                </select>
+            </div>
             <script id="container" name="detail" type="text/plain"></script>
-            <input type="submit" value="确定"/>
+            <br/>
+            <input class="btn btn-default" type="submit" value="确定"/>
         </form>
     </div>
     <script type="text/javascript">

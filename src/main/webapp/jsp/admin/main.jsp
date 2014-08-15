@@ -3,41 +3,50 @@
 <html lang="zh-CN">
 <head>
     <base href="<%=request.getScheme()%>://<%=request.getServerName()%>:<%=request.getServerPort()%><%=request.getContextPath()%>/"/>
-    <link rel="stylesheet" href="bootstrap-3.2.0-dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="bootstrap-3.2.0-dist/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="thirdpart/bootstrap-3.2.0-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="thirdpart/bootstrap-3.2.0-dist/css/bootstrap-theme.min.css">
     <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
-    <script type="text/javascript" src="bootstrap-3.2.0-dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="thirdpart/bootstrap-3.2.0-dist/js/bootstrap.min.js"></script>
     <title></title>
 </head>
 <body>
-<ul class="nav nav-pills nav-stacked" role="tablist">
-    <li role="presentation" class="active"><a href="#">Home</a></li>
-    <li role="presentation"><a href="#">Profile</a></li>
-    <li role="presentation"><a href="#">Messages</a></li>
-    <li role="presentation" class="dropdown">
-        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-            Dropdown<span class="caret"></span>
-        </a>
-        <ul class="dropdown-menu" role="menu">
-            <li role="presentation"><a href="#">dropdown1</a></li>
+<nav class="navbar navbar-default" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="admin/main.do">主页</a>
+        </div>
 
-            <li role="presentation" class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                    Dropdown<span class="caret"></span>
-                </a>
-                <ul class="dropdown-menu" role="menu">
-                    <li role="presentation"><a href="#">dropdown1</a></li>
-                    <li role="presentation"><a href="#">dropdown1</a></li>
-                </ul>
-            </li>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">商品分类<span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="admin/category/list.do" target="mainFrame">商品分类列表</a></li>
+                        <li class="divider"></li>
+                        <li><a href="admin/category/addInit.do" target="mainFrame">添加商品分类</a></li>
+                    </ul>
+                </li>
 
-            <li role="presentation"><a href="#">dropdown1</a></li>
-        </ul>
-    </li>
-    <li role="presentation"><a href="#">Message</a></li>
-    <li role="presentation"><a href="#">Message</a></li>
-    <li role="presentation"><a href="#">Message</a></li>
-    <li role="presentation"><a href="#">Message</a></li>
-</ul>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">商品<span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="admin/item/list.do" target="mainFrame">商品列表</a></li>
+                        <li class="divider"></li>
+                        <li><a href="admin/item/addInit.do" target="mainFrame">添加商品</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<iframe name="mainFrame" src="admin/welcome.do">
+</iframe>
 </body>
 </html>
