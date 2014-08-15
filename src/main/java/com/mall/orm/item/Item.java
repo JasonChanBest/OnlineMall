@@ -1,8 +1,11 @@
 package com.mall.orm.item;
 
 import com.mall.orm.category.Category;
+import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 /**
  * Created by Jayson on 2014/8/10.
@@ -14,12 +17,21 @@ public class Item {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
+
+    @NotNull(message = "商品名称不能为空")
+    @NotEmpty(message = "商品名称不能为空")
     @Column(name = "name")
     private String name;
+
+    @Pattern(regexp = "[\\d]+(.[\\d]+)*" , message = "价格填写不规范")
     @Column(name = "price")
     private float price;
+
+    @NotNull(message = "商品详情不能为空")
+    @NotEmpty(message = "商品详情不能为空")
     @Column(name = "detail")
     private String detail;
+
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "category_id")
     private Category category;

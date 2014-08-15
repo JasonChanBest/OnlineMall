@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="thirdpart/bootstrap-3.2.0-dist/css/bootstrap-theme.min.css">
     <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
     <script type="text/javascript" src="thirdpart/bootstrap-3.2.0-dist/js/bootstrap.min.js"></script>
-    <title></title>
+    <title>Online Mall管理系统</title>
 </head>
 <body>
 <nav class="navbar navbar-default" role="navigation">
