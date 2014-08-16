@@ -8,6 +8,7 @@
   <name>OnlineMall Maven Webapp</name>
   <url>http://maven.apache.org</url>
   <dependencies>
+      <!--spring依赖begin-->
       <dependency>
           <groupId>org.springframework</groupId>
           <artifactId>org.springframework.core</artifactId>
@@ -48,14 +49,9 @@
           <artifactId>org.springframework.expression</artifactId>
           <version>3.2.5.RELEASE</version>
       </dependency>
+      <!--spring依赖end-->
 
-
-      <dependency>
-          <groupId>mysql</groupId>
-          <artifactId>mysql-connector-java</artifactId>
-          <version>5.1.31</version>
-      </dependency>
-
+      <!--hibernate依赖begin-->
       <dependency>
           <groupId>org.hibernate</groupId>
           <artifactId>hibernate-core</artifactId>
@@ -71,41 +67,30 @@
           <artifactId>hibernate-validator</artifactId>
           <version>5.1.2.Final</version>
       </dependency>
-
       <dependency>
           <groupId>javassist</groupId>
           <artifactId>javassist</artifactId>
           <version>3.13.0.GA</version>
       </dependency>
+      <!--hibernate依赖end-->
 
+      <!--jstl依赖begin-->
       <dependency>
-          <groupId>javax.servlet</groupId>
-          <artifactId>javax.servlet-api</artifactId>
-          <version>3.1.0</version>
+          <groupId>taglibs</groupId>
+          <artifactId>standard</artifactId>
+          <version>1.1.2</version>
           <scope>provided</scope>
       </dependency>
-
       <dependency>
           <groupId>javax.servlet</groupId>
-          <artifactId>jsp-api</artifactId>
-          <version>2.0</version>
-          <scope>provided</scope>
-      </dependency>
-
-      <dependency>
-          <groupId>jstl</groupId>
           <artifactId>jstl</artifactId>
-          <version>1.2</version>
-      </dependency>
-
-      <dependency>
-          <groupId>javax.el</groupId>
-          <artifactId>javax.el-api</artifactId>
-          <version>2.2.4</version>
+          <version>1.1.2</version>
           <scope>provided</scope>
       </dependency>
+      <!--jstl依赖end-->
 
-       <dependency>
+      <!--slf4j依赖begin-->
+      <dependency>
            <groupId>org.slf4j</groupId>
            <artifactId>slf4j-api</artifactId>
            <version>1.7.6</version>
@@ -120,19 +105,23 @@
            <artifactId>log4j</artifactId>
            <version>1.2.17</version>
        </dependency>
+      <!--slf4j依赖end-->
 
+      <dependency>
+          <groupId>javax.servlet</groupId>
+          <artifactId>javax.servlet-api</artifactId>
+          <version>3.1.0</version>
+          <scope>provided</scope>
+      </dependency>
+
+      <dependency>
+          <groupId>mysql</groupId>
+          <artifactId>mysql-connector-java</artifactId>
+          <version>5.1.31</version>
+      </dependency>
 
   </dependencies>
   <build>
-      <pluginManagement>
-          <plugins>
-              <plugin>
-                  <groupId>org.apache.tomcat.maven</groupId>
-                  <artifactId>tomcat7-maven-plugin</artifactId>
-                  <version>2.2</version>
-              </plugin>
-          </plugins>
-      </pluginManagement>
     <finalName>OnlineMall</finalName>
     <resources>
         <resource>

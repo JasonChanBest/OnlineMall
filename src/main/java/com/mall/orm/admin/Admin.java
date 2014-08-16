@@ -17,11 +17,10 @@ public class Admin {
     @Column(name = "id")
     private int id;
 
-    @NotNull(message = "登陆名不能为空")
+    @NotEmpty(message = "登陆名不能为空")
     @Column(name = "login_name")
     private String loginName;
 
-    @NotNull(message = "登陆密码不能为空")
     @Pattern(regexp = "[0-9,a-z,A-Z]{6,20}" , message = "登陆密码必须为6-20位字母或数字组合")
     @Column(name = "login_pwd")
     private String loginPwd;
