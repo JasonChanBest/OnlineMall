@@ -6,11 +6,48 @@
     <base href="<%=request.getScheme()%>://<%=request.getServerName()%>:<%=request.getServerPort()%><%=request.getContextPath()%>/"/>
     <link rel="stylesheet" href="thirdpart/bootstrap-3.2.0-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="thirdpart/bootstrap-3.2.0-dist/css/bootstrap-theme.min.css">
-    <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+    <link rel="stylesheet" href="thirdpart/bootstrap-fileinput/css/fileinput.min.css">
+    <script type="text/javascript" src="thirdpart/jquery/jquery-1.11.1.min.js"></script>
     <script type="text/javascript" src="thirdpart/bootstrap-3.2.0-dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="thirdpart/bootstrap-fileinput/js/fileinput.min.js"></script>
+    <script type="text/javascript" src="thirdpart/jquery.form/jquery.form.min.js"></script>
 
     <script type="text/javascript" src="thirdpart/ueditor/ueditor.config.js"></script>
     <script type="text/javascript" src="thirdpart/ueditor/ueditor.all.min.js"></script>
+
+    <script type="text/javascript">
+        $(function(){
+            var editor = UE.getEditor('container');
+
+            $(":file").fileinput({
+                uploadLabel:"上传",
+                browseLabel:"选择文件"
+            });
+            $("button.kv-fileinput-upload").attr("type","button");
+            $("button.kv-fileinput-upload").click(function(){
+                var self=$(this);
+                var file=self.siblings("div.btn-file").children("input[type=file]").clone();
+                var fileName=file.val();
+                if(fileName==''||fileName==NaN||fileName==undefined){
+                    alert("要先选择了文件才能上传")
+                    return;
+                }
+                var form=$("<form></form>").attr("action","admin/picture/upload.do").attr("enctype","multipart/form-data").attr("method","post").append(file);
+                form.ajaxSubmit({
+                    dataType:"json",
+                    success: function (data) {
+                        alert(data);
+                    },
+                    uploadProgress: function (event, position, total, percentComplete) {
+                        var progressBar=self.closest("div.form-group").children("div.progress-bar");
+                        progressBar.attr("style","width:"+percentComplete+"%");
+                    },
+                    error: function () {
+                    }
+                });
+            });
+        });
+    </script>
     <title></title>
 </head>
 <body>
@@ -32,14 +69,21 @@
                     </c:forEach>
                 </select>
             </div>
-            <label>商品详情：</label>
-            <script id="container" name="detail" type="text/plain"></script>
-            <br/>
-            <input class="btn btn-default" type="submit" value="确定"/>
+            <div class="form-group">
+                <input type="file" name="files[]" multiple>
+                <div class="progress">
+                    <div class="progress-bar progress-bar-striped active"  role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>商品详情：</label>
+                <script id="container" name="detail" type="text/plain"></script>
+            </div>
+            <div class="form-group">
+                <input class="btn btn-default" type="submit" value="确定"/>
+            </div>
         </form>
     </div>
-    <script type="text/javascript">
-        var editor = UE.getEditor('container');
-    </script>
 </body>
 </html>

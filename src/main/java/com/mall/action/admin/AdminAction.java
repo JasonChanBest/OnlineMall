@@ -27,11 +27,21 @@ public class AdminAction {
     private IAdminService adminService;
 
     @RequestMapping("/loginInit")
-    public String loginInit(){
+    public String loginInit(HttpSession session){
+        Object adminId = session.getAttribute(Identity.admin.getIdentity());
+        if(adminId != null)
+            return MAIN_JSP;
+
         return LOGIN_JSP;
     }
     @RequestMapping("/login")
     public String login(@Valid @ModelAttribute Admin admin , BindingResult result , HttpSession session){
+
+        Object adminId = session.getAttribute(Identity.admin.getIdentity());
+        if(adminId != null){
+            return MAIN_JSP;
+        }
+
         if(result.hasErrors()){
             return LOGIN_JSP;
         }
@@ -58,5 +68,10 @@ public class AdminAction {
     @RequestMapping("/welcome")
     public String welcome(){
         return WELCOME_JSP;
+    }
+    @RequestMapping("/logout")
+    public String logout(HttpSession session){
+        session.removeAttribute(Identity.admin.getIdentity());
+        return LOGIN_JSP;
     }
 }
