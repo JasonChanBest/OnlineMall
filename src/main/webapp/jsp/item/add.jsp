@@ -16,36 +16,93 @@
     <script type="text/javascript" src="thirdpart/ueditor/ueditor.all.min.js"></script>
 
     <script type="text/javascript">
-        $(function(){
-            var editor = UE.getEditor('container');
-
-            $(":file").fileinput({
+        var progressTemplate=$('' +
+                '<div class="progress">' +
+                '   <div class="progress-bar progress-bar-striped active"  role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 0%">' +
+                '   </div>' +
+                '</div>' +
+                '');
+        var formGroupTemplate=$('' +
+                '<div class="form-group">' +
+                '</div>' +
+        '');
+        var inputTemplate=$('' +
+                '<input type="file" name="files[]" multiple>' +
+        '');
+        function beforeFormGroup(sibling){
+            var formGroup=formGroupTemplate.clone();
+            sibling.before(formGroup);
+            return formGroup;
+        }
+        function appendInput(parent) {
+            var input=inputTemplate.clone();
+            parent.append(input);
+            return input;
+        }
+        function beforeProgress(sibling){
+            var progress=progressTemplate.clone();
+            sibling.before(progress);
+            return progress;
+        }
+        function appendHidden(parent,value) {
+            var hidden=$('<input type="hidden" name="pictureNames">');
+            hidden.val(value);
+            parent.append(hidden);
+        }
+        function removeHidden (parent) {
+            parent.find('input:hidden').remove();
+        }
+        function fileInput() {
+            var formGroup=beforeFormGroup($('div#addPicture'));
+            var input=appendInput(formGroup);
+            input.fileinput({
                 uploadLabel:"上传",
                 browseLabel:"选择文件"
             });
-            $("button.kv-fileinput-upload").attr("type","button");
-            $("button.kv-fileinput-upload").click(function(){
+            input.on("fileclear",function () {
+                removeHidden(formGroup);
+                formGroup.find('div.progress').hide();
+            });
+            input.on("fileloaded", function () {
+                removeHidden(formGroup);
+            })
+            var uploadButton=formGroup.find('button.kv-fileinput-upload');
+            uploadButton.attr("type","button");
+            uploadButton.click(function(){
                 var self=$(this);
-                var file=self.siblings("div.btn-file").children("input[type=file]").clone();
+                var file=self.siblings("div.btn-file").children(":file").clone();
                 var fileName=file.val();
                 if(fileName==''||fileName==NaN||fileName==undefined){
-                    alert("要先选择了文件才能上传")
+                    alert("要先选择了文件才能上传");
                     return;
                 }
                 var form=$("<form></form>").attr("action","admin/picture/upload.do").attr("enctype","multipart/form-data").attr("method","post").append(file);
                 form.ajaxSubmit({
                     dataType:"json",
                     success: function (data) {
-                        alert(data);
+                        var formGroup=self.parents('div.form-group');
+                        var value=data.fileName;
+                        appendHidden(formGroup , value);
+                        var progressBar=formGroup.find("div.progress-bar");
+                        progressBar.text('上传完成');
                     },
                     uploadProgress: function (event, position, total, percentComplete) {
-                        var progressBar=self.closest("div.form-group").children("div.progress-bar");
+                        var progress=formGroup.find('div.progress');
+                        progress.show();
+                        var progressBar=progress.find("div.progress-bar");
                         progressBar.attr("style","width:"+percentComplete+"%");
+                        progressBar.text(percentComplete + '%');
                     },
                     error: function () {
                     }
                 });
             });
+            var progress=beforeProgress(formGroup.find('div.input-group'));
+            progress.hide();
+        }
+        $(function(){
+            var editor = UE.getEditor('container');
+            fileInput();
         });
     </script>
     <title></title>
@@ -63,18 +120,14 @@
             </div>
             <div class="form-group">
                 <label>商品分类：</label>
-                <select class="form-control" name="category.id">
+                <select class="form-control" name="categoryId">
                     <c:forEach items="${categories}" var="category">
-                        <option value="${category.id}" <c:if test="${item.category.id==category.id}">selected="selected"</c:if>>${category.name}</option>
+                        <option value="${category.id}" <c:if test="${item.category.id==categoryId}">selected="selected"</c:if>>${category.name}</option>
                     </c:forEach>
                 </select>
             </div>
-            <div class="form-group">
-                <input type="file" name="files[]" multiple>
-                <div class="progress">
-                    <div class="progress-bar progress-bar-striped active"  role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
-                    </div>
-                </div>
+            <div class="form-group" id="addPicture">
+                <button onclick="fileInput()" type="button" class="btn btn-info">添加图片</button>
             </div>
             <div class="form-group">
                 <label>商品详情：</label>

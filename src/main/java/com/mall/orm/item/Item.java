@@ -4,8 +4,8 @@ import com.mall.orm.category.Category;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
+import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
 
 /**
  * Created by Jayson on 2014/8/10.
@@ -18,12 +18,11 @@ public class Item {
     @Column(name = "id")
     private int id;
 
-    @NotNull(message = "商品名称不能为空")
     @NotEmpty(message = "商品名称不能为空")
     @Column(name = "name")
     private String name;
 
-    @Pattern(regexp = "[\\d]+(.[\\d]+)*" , message = "价格填写不规范")
+    @DecimalMin(value = "0.1" , message = "价格应大于0.1")
     @Column(name = "price")
     private float price;
 
@@ -74,5 +73,16 @@ public class Item {
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    @Override
+    public String toString() {
+        return "Item{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                ", detail='" + detail + '\'' +
+                ", category=" + category +
+                '}';
     }
 }

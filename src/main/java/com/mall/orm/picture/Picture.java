@@ -14,11 +14,9 @@ public class Picture {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
-    @Column(name = "small_path")
-    private String smallPath;
-    @Column(name = "big_path")
-    private String bigPath;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @Column(name = "path")
+    private String path;
+    @ManyToOne(cascade = CascadeType.ALL , fetch = FetchType.LAZY)
     @JoinColumn(name = "item_id")
     private Item item;
 
@@ -30,20 +28,12 @@ public class Picture {
         this.id = id;
     }
 
-    public String getSmallPath() {
-        return smallPath;
+    public String getPath() {
+        return path;
     }
 
-    public void setSmallPath(String smallPath) {
-        this.smallPath = smallPath;
-    }
-
-    public String getBigPath() {
-        return bigPath;
-    }
-
-    public void setBigPath(String bigPath) {
-        this.bigPath = bigPath;
+    public void setPath(String path) {
+        this.path = path;
     }
 
     public Item getItem() {

@@ -1,6 +1,6 @@
 package com.mall.service.category.impl;
 
-import com.mall.dao.category.ICategoryDao;
+import com.mall.dao.category.AbstractCategoryDao;
 import com.mall.orm.category.Category;
 import com.mall.service.category.ICategoryService;
 import org.springframework.stereotype.Service;
@@ -15,7 +15,7 @@ import java.util.List;
 @Service("CategoryService")
 public class CategoryService implements ICategoryService {
     @Resource(name = "CategoryDao")
-    private ICategoryDao categoryDao;
+    private AbstractCategoryDao categoryDao;
     @Override
     public Serializable save(Category category) {
         return categoryDao.save(category);
@@ -23,12 +23,12 @@ public class CategoryService implements ICategoryService {
 
     @Override
     public List<Category> list() {
-        return categoryDao.list();
+        return categoryDao.list(Category.class);
     }
 
     @Override
     public Category get(int id) {
-        return categoryDao.get(id);
+        return categoryDao.get(Category.class , id);
     }
 
     @Override

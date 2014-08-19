@@ -1,5 +1,6 @@
 package com.mall.action.picture;
 
+import com.mall.config.ApplicationConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -21,7 +22,7 @@ import java.util.UUID;
 @RequestMapping("/admin/picture")
 public class PictureAction {
     private static final Logger LOGGER = LoggerFactory.getLogger(PictureAction.class);
-    private static final String PICTURE_DIR = "d://";
+    private static final String PICTURE_DIR = ApplicationConfig.instance().getPicturePath();
     @RequestMapping("/upload")
     @ResponseBody
     public String upload(MultipartHttpServletRequest request){
@@ -36,6 +37,6 @@ public class PictureAction {
                 LOGGER.error("" , e);
             }
         }
-        return "success";
+        return "{\"status\":\"success\",\"fileName\":\""+fileName+"\"}";
     }
 }

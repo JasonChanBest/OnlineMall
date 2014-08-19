@@ -29,4 +29,9 @@
         <filter-name>encoding</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
+
+    <context-param>
+        <param-name>propertiesPath</param-name>
+        <param-value>/WEB-INF/classes/config.properties</param-value>
+    </context-param>
 </web-app>
