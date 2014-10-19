@@ -34,4 +34,8 @@
         <param-name>propertiesPath</param-name>
         <param-value>/WEB-INF/classes/config.properties</param-value>
     </context-param>
+    
+    <welcome-file-list>
+        <welcome-file>/jsp/index.jsp</welcome-file>
+    </welcome-file-list>
 </web-app>

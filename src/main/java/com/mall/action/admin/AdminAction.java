@@ -14,7 +14,9 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 /**
- * Created by Jayson on 2014/8/10.
+ * @author Jayson
+ * @since v0.1
+ * @date 2014年10月19日 12时30分
  */
 @Controller("AdminAction")
 @RequestMapping("/admin")
