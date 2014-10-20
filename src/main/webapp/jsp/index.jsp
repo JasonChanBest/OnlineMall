@@ -3,9 +3,11 @@
   Date: 2014-10-19 12:37
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath() + "/";%>
 <html>
 <head>
     <title></title>
+    <base href="<%=basePath%>">
 </head>
 <body>
 <jsp:include page="header.jsp"></jsp:include>
