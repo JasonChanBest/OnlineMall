@@ -124,19 +124,22 @@
     width: 200px;
     padding-left: 10px;
 }
+
 .header .treeMenu .grandparent-item a{
     font: bold 15px/30px "microsoft yahei";
 }
 .header .treeMenu .grandparent-item a:hover{
-    font: normal 16px/30px "microsoft yahei";
+    font: bold 16px/30px "microsoft yahei";
 }
 .header .treeMenu .parents{
     width: 500px;
     position: absolute;
-    left: 200px;
+    left: 195px;
     top: 0;
     display: none;
     padding: 0 15px;
+    border: solid 1px #C1C1C1;
+    background: #ffffff;
 }
 .header .treeMenu .parents dl{
     margin: 0;
