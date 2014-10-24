@@ -1,10 +1,10 @@
 $(function(){
-    $('.header .treeMenu .grandparent-item').hover(
+    $('.header .treeMenu .grandparent').hover(
         function(){
-            $(this).next('.parents').toggle();
+            $(this).find('.parents').toggle();
         },
         function(){
-            $(this).next('.parents').toggle();
+            $(this).find('.parents').toggle();
         }
     );
 });

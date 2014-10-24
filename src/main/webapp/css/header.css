@@ -107,21 +107,42 @@
 }
 
 .header .treeMenu{
+    border: solid #E4393C 2px;
+    width: 200px;
+}
+.header .treeMenu a{
+    color: #666666;
+    text-decoration: none;
+    font: normal 13px/30px "microsoft yahei";
+}
+.header .treeMenu a:hover{
+    color: red;
+    text-decoration: underline;
+}
+.header .treeMenu .grandparent{
     position: relative;
+    width: 200px;
+    padding-left: 10px;
+}
+.header .treeMenu .grandparent-item a{
+    font: bold 15px/30px "microsoft yahei";
+}
+.header .treeMenu .grandparent-item a:hover{
+    font: normal 16px/30px "microsoft yahei";
 }
 .header .treeMenu .parents{
     width: 500px;
     position: absolute;
     left: 200px;
+    top: 0;
     display: none;
+    padding: 0 15px;
 }
 .header .treeMenu .parents dl{
     margin: 0;
     float: left;
+    clear: both;
 }
-.header .treeMenu .parents dl dt{
-    float: left;
-}
-.header .treeMenu .parents dl dd{
+.header .treeMenu dt,.header .treeMenu dd{
     float: left;
 }

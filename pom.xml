@@ -5,49 +5,60 @@
     <artifactId>OnlineMall</artifactId>
     <packaging>war</packaging>
     <version>0.1</version>
-    <name>OnlineMall Maven Webapp</name>
-    <url>http://maven.apache.org</url>
+    <name>OnlineMall</name>
+
+    <properties>
+        <project.encoding>UTF-8</project.encoding>
+        <spring.version>3.2.5.RELEASE</spring.version>
+        <hibernate.version>3.6.9.Final</hibernate.version>
+        <jstl.version>1.1.2</jstl.version>
+        <slf4j.version>1.7.6</slf4j.version>
+        <log4j.version>1.2.17</log4j.version>
+        <servlet.version>3.1.0</servlet.version>
+        <mysql.version>5.1.31</mysql.version>
+    </properties>
+
     <dependencies>
         <!--spring依赖begin-->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>org.springframework.core</artifactId>
-            <version>3.2.5.RELEASE</version>
+            <version>${spring.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>org.springframework.web</artifactId>
-            <version>3.2.5.RELEASE</version>
+            <version>${spring.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>org.springframework.aop</artifactId>
-            <version>3.2.5.RELEASE</version>
+            <version>${spring.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>org.springframework.beans</artifactId>
-            <version>3.2.5.RELEASE</version>
+            <version>${spring.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>org.springframework.context</artifactId>
-            <version>3.2.5.RELEASE</version>
+            <version>${spring.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>org.springframework.web.servlet</artifactId>
-            <version>3.2.5.RELEASE</version>
+            <version>${spring.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>org.springframework.orm</artifactId>
-            <version>3.2.5.RELEASE</version>
+            <version>${spring.version}</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>org.springframework.expression</artifactId>
-            <version>3.2.5.RELEASE</version>
+            <version>${spring.version}</version>
         </dependency>
         <!--spring依赖end-->
 
@@ -55,12 +66,12 @@
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
-            <version>3.6.9.Final</version>
+            <version>${hibernate.version}</version>
         </dependency>
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-c3p0</artifactId>
-            <version>3.6.9.Final</version>
+            <version>${hibernate.version}</version>
         </dependency>
         <dependency>
             <groupId>org.hibernate</groupId>
@@ -78,12 +89,12 @@
         <dependency>
             <groupId>taglibs</groupId>
             <artifactId>standard</artifactId>
-            <version>1.1.2</version>
+            <version>${jstl.version}</version>
         </dependency>
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>jstl</artifactId>
-            <version>1.1.2</version>
+            <version>${jstl.version}</version>
         </dependency>
         <!--jstl依赖end-->
 
@@ -91,17 +102,17 @@
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
-            <version>1.7.6</version>
+            <version>${slf4j.version}</version>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-log4j12</artifactId>
-            <version>1.7.6</version>
+            <version>${slf4j.version}</version>
         </dependency>
         <dependency>
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
-            <version>1.2.17</version>
+            <version>${log4j.version}</version>
         </dependency>
         <!--slf4j依赖end-->
 
@@ -114,14 +125,14 @@
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
-            <version>3.1.0</version>
+            <version>${servlet.version}</version>
             <scope>provided</scope>
         </dependency>
 
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.31</version>
+            <version>${mysql.version}</version>
         </dependency>
 
     </dependencies>
@@ -138,6 +149,24 @@
         </resources>
         <pluginManagement>
             <plugins>
+                <plugin>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.1</version>
+                    <configuration>
+                        <compilerVersion>1.7</compilerVersion>
+                        <encoding>${project.encoding}</encoding>
+                        <fork>true</fork>
+                        <source>1.7</source>
+                        <target>1.7</target>
+                        <debug>true</debug>
+                        <optimize>true</optimize>
+                        <showDeprecation>true</showDeprecation>
+                        <showWarnings>true</showWarnings>
+                        <compilerArgument>-Xlint:-options</compilerArgument>
+                        <meminitial>256m</meminitial>
+                        <maxmem>1024m</maxmem>
+                    </configuration>
+                </plugin>
                 <plugin>
                     <groupId>org.apache.tomcat.maven</groupId>
                     <artifactId>tomcat7-maven-plugin</artifactId>

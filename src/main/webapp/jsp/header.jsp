@@ -46,8 +46,8 @@
     </div>
     <div class="treeMenu">
         <div class="grandparent">
-            <span class="grandparent-item"><a href="#">图书、音像、数字产品</a></span>
-            <span class="parents">
+            <div class="grandparent-item"><a href="#">图书、音像、数字产品</a></div>
+            <div class="parents">
                 <dl>
                     <dt class="parent"><a href="#">电子书</a></dt>
                     <dd class="item"><a href="#">免费</a></dd>
@@ -66,53 +66,31 @@
                     <dd class="item"><a href="#">免费</a></dd>
                     <dd class="item"><a href="#">免费</a></dd>
                 </dl>
-            </span>
+            </div>
         </div>
+
         <div class="grandparent">
-            <span class="grandparent-item"><a href="#">图书、音像、数字产品</a></span>
-            <span class="parents">
+            <div class="grandparent-item"><a href="#">图书、音像、数字产品</a></div>
+            <div class="parents">
                 <dl>
-                    <dt class="parent"><a href="#">电子书</a></dt>
-                    <dd class="item"><a href="#">免费</a></dd>
-                    <dd class="item"><a href="#">免费</a></dd>
-                    <dd class="item"><a href="#">免费</a></dd>
+                    <dt class="parent"><a href="#">数字产品</a></dt>
+                    <dd class="item"><a href="#">音像</a></dd>
+                    <dd class="item"><a href="#">音像</a></dd>
+                    <dd class="item"><a href="#">音像</a></dd>
                 </dl>
                 <dl>
-                    <dt class="parent"><a href="#">电子书</a></dt>
-                    <dd class="item"><a href="#">免费</a></dd>
-                    <dd class="item"><a href="#">免费</a></dd>
-                    <dd class="item"><a href="#">免费</a></dd>
+                    <dt class="parent"><a href="#">数字产品</a></dt>
+                    <dd class="item"><a href="#">音像</a></dd>
+                    <dd class="item"><a href="#">音像</a></dd>
+                    <dd class="item"><a href="#">音像</a></dd>
                 </dl>
                 <dl>
-                    <dt class="parent"><a href="#">电子书</a></dt>
-                    <dd class="item"><a href="#">免费</a></dd>
-                    <dd class="item"><a href="#">免费</a></dd>
-                    <dd class="item"><a href="#">免费</a></dd>
+                    <dt class="parent"><a href="#">数字产品</a></dt>
+                    <dd class="item"><a href="#">音像</a></dd>
+                    <dd class="item"><a href="#">音像</a></dd>
+                    <dd class="item"><a href="#">音像</a></dd>
                 </dl>
-            </span>
-        </div>
-        <div class="grandparent">
-            <span class="grandparent-item"><a href="#">图书、音像、数字产品</a></span>
-            <span class="parents">
-                <dl>
-                    <dt class="parent"><a href="#">电子书</a></dt>
-                    <dd class="item"><a href="#">免费</a></dd>
-                    <dd class="item"><a href="#">免费</a></dd>
-                    <dd class="item"><a href="#">免费</a></dd>
-                </dl>
-                <dl>
-                    <dt class="parent"><a href="#">电子书</a></dt>
-                    <dd class="item"><a href="#">免费</a></dd>
-                    <dd class="item"><a href="#">免费</a></dd>
-                    <dd class="item"><a href="#">免费</a></dd>
-                </dl>
-                <dl>
-                    <dt class="parent"><a href="#">电子书</a></dt>
-                    <dd class="item"><a href="#">免费</a></dd>
-                    <dd class="item"><a href="#">免费</a></dd>
-                    <dd class="item"><a href="#">免费</a></dd>
-                </dl>
-            </span>
+            </div>
         </div>
     </div>
 </div>
