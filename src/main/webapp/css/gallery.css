@@ -1,0 +1,23 @@
+.galleryContainer{
+    width: 1000px;
+    height:400px;
+    margin: 0 auto;
+    padding-left: 200px;
+}
+.gallery{
+    height: 400px;
+    width: 1000px;
+    overflow: hidden;
+}
+.gallery ul{
+    height: 400px;
+    list-style:none;
+    margin: 0;
+    padding: 0;
+}
+.gallery .item{
+    width: 1000px;
+    height: 400px;
+    float: left;
+    list-style:none;
+}

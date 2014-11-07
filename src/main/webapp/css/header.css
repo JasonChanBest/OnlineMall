@@ -107,8 +107,11 @@
 }
 
 .header .treeMenu{
-    border: solid #E4393C 2px;
-    width: 200px;
+    border-top: 0;
+    border-left: solid #E4393C 2px;
+    border-right: solid #E4393C 2px;
+    border-bottom: solid #E4393C 2px;
+    width: 196px;
 }
 .header .treeMenu a{
     color: #666666;

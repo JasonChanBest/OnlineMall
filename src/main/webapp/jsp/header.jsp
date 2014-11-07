@@ -95,3 +95,4 @@
     </div>
 </div>
 <link rel="stylesheet" type="text/css" href="css/header.css"/>
+<script type="text/javascript" src="js/header.js"></script>
