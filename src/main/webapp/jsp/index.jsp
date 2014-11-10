@@ -25,5 +25,6 @@
         padding: 0;
     }
 </style>
+<link rel="stylesheet" type="text/css" href="css/common.css"/>
 </html>
 
