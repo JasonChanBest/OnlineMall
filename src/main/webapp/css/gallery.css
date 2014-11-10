@@ -8,8 +8,9 @@
     height: 400px;
     width: 1000px;
     overflow: hidden;
+    position: relative;
 }
-.gallery ul{
+.gallery .items{
     height: 400px;
     list-style:none;
     margin: 0;
@@ -20,4 +21,24 @@
     height: 400px;
     float: left;
     list-style:none;
+}
+.gallery .numbers{
+    list-style: none;
+    position: absolute;
+    bottom: 0;
+    height: 40px;
+    width: 1000px;
+    margin: 0;
+    padding: 0;
+    z-index: 0;
+}
+.gallery .number{
+    float: right;
+    padding: 0 10px;
+    margin: 0 5px;
+    font: normal 15px/30px "microsoft yahei";
+    background: #E4393C;
+}
+.gallery .number:hover{
+    background: #CCCCCC;
 }

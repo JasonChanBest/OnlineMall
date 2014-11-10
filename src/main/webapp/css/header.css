@@ -37,6 +37,7 @@
     margin: 0 auto;
     width: 1200px;
     position: relative;
+    z-index: 1000;
 }
 .header .content{
     height: 70px;
