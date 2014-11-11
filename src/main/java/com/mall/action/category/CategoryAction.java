@@ -25,19 +25,16 @@ public class CategoryAction {
     private ICategoryService categoryService;
 
     @RequestMapping("/add")
-    public String add(@Valid @ModelAttribute Category category , BindingResult result , int parentId , Model model){
+    public String add(@Valid @ModelAttribute Category category , BindingResult result , Model model){
         if(result.hasErrors()){
             return CATEGORY_ADD;
         }
-        Category parent;
-        if(parentId == 0){
-            parent = null;
-        }else{
-            parent = categoryService.get(parentId);
-        }
-        category.setParent(parent);
-        categoryService.save(category);
 
+        if(category.getParent().getId() == 0){
+            category.setParent(null);
+        }
+
+        categoryService.save(category);
         List<Category> categories = categoryService.list();
         model.addAttribute("categories" , categories);
         return CATEGORY_ADD;

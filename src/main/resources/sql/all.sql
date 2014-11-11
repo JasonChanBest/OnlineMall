@@ -1,3 +1,5 @@
+CREATE DATABASE online_mall DEFAULT CHAR SET UTF8 COLLATE utf8_general_ci;
+use online_mall;
 create table admin(
   id int auto_increment ,
   login_name varchar(20),
@@ -45,4 +47,3 @@ create table Picture(
   item_id int,
   constraint pk_picture_id primary key(id)
 );
-

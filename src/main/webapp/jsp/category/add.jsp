@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
+<%@taglib prefix="sp" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -19,7 +20,7 @@
             </div>
             <div class="form-group">
                 <label>上级分类</label>
-                <select name="parentId" class="form-control">
+                <select name="parent.id" class="form-control">
                     <option value="0">无</option>
                     <c:forEach items="${categories}" var="category">
                         <option value="${category.id}">${category.name}</option>
