@@ -73,6 +73,12 @@ public class CategoryAction {
     }
     @RequestMapping("/edit")
     public String edit(@Valid @ModelAttribute Category category , BindingResult result , Model model){
+        if(result.hasErrors()){
+            return CATEGORY_EDIT;
+        }
+        if(category.getParent().getId() == 0){
+            category.setParent(null);
+        }
         categoryService.update(category);
         return CATEGORY_EDIT;
     }

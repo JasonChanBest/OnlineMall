@@ -21,7 +21,7 @@ public class Category {
     @NotEmpty
     @Column(name = "name")
     private String name;
-    @ManyToOne(fetch = FetchType.EAGER , cascade = {CascadeType.ALL})
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "parent_id")
     private Category parent;
 
