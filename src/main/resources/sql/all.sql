@@ -6,6 +6,7 @@ create table admin(
   login_pwd varchar(50),
   constraint pk_user_id primary key (id)
 );
+insert into admin(login_name,login_pwd) values('admin','123456');
 
 create table user(
   id int auto_increment,
@@ -25,7 +26,7 @@ create table cart_item (
   item_id int
 );
 
-create table Category(
+create table category(
   id int auto_increment,
   name varchar(20),
   parent_id int,
@@ -41,7 +42,7 @@ create table item(
   constraint pk_item_id primary key(id)
 );
 
-create table Picture(
+create table picture(
   id int auto_increment,
   path varchar(200),
   item_id int,

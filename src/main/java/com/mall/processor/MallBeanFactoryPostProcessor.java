@@ -17,7 +17,8 @@ public class MallBeanFactoryPostProcessor implements BeanFactoryPostProcessor , 
     private ServletContext servletContext;
     @Override
     public void postProcessBeanFactory(ConfigurableListableBeanFactory configurableListableBeanFactory) throws BeansException {
-        ApplicationConfig.instance().config(servletContext);
+        String root = servletContext.getRealPath("/");
+        ApplicationConfig.instance().config(root);
     }
 
     @Override
