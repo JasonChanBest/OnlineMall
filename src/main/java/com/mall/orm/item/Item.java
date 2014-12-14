@@ -11,7 +11,7 @@ import javax.validation.constraints.NotNull;
  * Created by Jayson on 2014/8/10.
  */
 @Entity
-@Table(name = "Item")
+@Table(name = "item")
 public class Item {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

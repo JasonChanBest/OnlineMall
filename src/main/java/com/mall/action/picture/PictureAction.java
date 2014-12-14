@@ -32,7 +32,7 @@ public class PictureAction {
             MultipartFile file = request.getFile(fileNames.next());
             fileName= UUID.randomUUID().toString() + file.getOriginalFilename();
             try {
-                FileCopyUtils.copy(file.getBytes() , new File(PICTURE_DIR + fileName));
+                FileCopyUtils.copy(file.getBytes() , new File(PICTURE_DIR + File.separator + fileName));
             } catch (IOException e) {
                 LOGGER.error("" , e);
             }
