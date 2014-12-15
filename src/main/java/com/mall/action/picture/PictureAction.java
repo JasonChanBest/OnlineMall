@@ -35,6 +35,7 @@ public class PictureAction {
                 FileCopyUtils.copy(file.getBytes() , new File(PICTURE_DIR + File.separator + fileName));
             } catch (IOException e) {
                 LOGGER.error("" , e);
+                return "{\"status\":\"fail\"}";
             }
         }
         return "{\"status\":\"success\",\"fileName\":\""+fileName+"\"}";

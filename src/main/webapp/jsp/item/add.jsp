@@ -19,6 +19,9 @@
                 </c:forEach>
             </select>
         </div>
+        <div class="form-group">
+            <input type="file">
+        </div>
         <div class="form-group" id="addPicture">
             <button onclick="fileInput()" type="button" class="btn btn-info">添加图片</button>
         </div>
@@ -122,8 +125,21 @@
         progress.hide();
     }
     $(function(){
-        console.log('ok');
         var editor = UE.getEditor('container');
-        fileInput();
+//        fileInput();
     });
+</script>
+<script type="text/javascript">
+    $(function () {
+        initFile();
+    });
+    function initFile(file) {
+        if(!file){
+            file = $(':file');
+        }
+        file.fileinput({
+            showUpload:false,
+            browseLabel:"选择文件"
+        });
+    }
 </script>
