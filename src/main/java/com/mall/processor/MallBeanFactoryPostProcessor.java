@@ -10,7 +10,6 @@ import org.springframework.web.context.ServletContextAware;
 
 import javax.servlet.ServletContext;
 import java.io.File;
-import java.io.IOException;
 
 /**
  * Created by Jayson on 2014/8/18.
@@ -24,7 +23,7 @@ public class MallBeanFactoryPostProcessor implements BeanFactoryPostProcessor , 
         try {
             String root = servletContext.getRealPath("/");
             ApplicationConfig.instance().config(root);
-            String picturePath = ApplicationConfig.instance().getPicturePath();
+            String picturePath = ApplicationConfig.instance().getRealPicturePath();
             File pictureDir = new File(picturePath);
             if(!pictureDir.exists()) {
                 pictureDir.mkdirs();

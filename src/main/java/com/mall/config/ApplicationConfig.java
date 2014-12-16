@@ -30,7 +30,13 @@ public class ApplicationConfig{
             LOGGER.error("" , e);
         }
     }
-    public String getPicturePath(){
+    public String getRealPicturePath(){
         return root + properties.getProperty("picturePath");
+    }
+    public String getPicturePath(){
+        return properties.getProperty("picturePath");
+    }
+    public String getRoot(){
+        return root;
     }
 }
