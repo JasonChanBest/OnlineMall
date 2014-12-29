@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core_rt" %>
+<%@ taglib prefix="s" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="/jsp/common.jsp"%>
 
@@ -24,30 +25,38 @@
         </div>
     </form>
 
-    <form action="admin/item/add.do" method="post" role="form">
+    <form id="addItemForm" action="admin/item/add.do" method="post" role="form" ajax="#mainDiv">
+        <s:errors path="*"></s:errors>
         <div class="form-group">
-            <label>商品名称：</label><sp:errors path="item.name"></sp:errors>
-            <input class="form-control" type="text" value="${item.name}" name="name" placeholder="请输入商品名称"/>
+            <label>商品名称：</label>
+            <s:errors path="itemForm.name"></s:errors>
+            <input class="form-control" type="text" value="${itemForm.name}" name="name" placeholder="请输入商品名称"/>
         </div>
         <div class="form-group">
-            <label>商品价格：</label><sp:errors path="item.price"></sp:errors>
-            <input class="form-control" type="number" value="${item.price}" name="price" placeholder="请输入商品价格"/>
+            <label>商品价格：</label>
+            <s:errors path="itemForm.price"></s:errors>
+            <input class="form-control" type="number" value="${itemForm.price}" name="price" placeholder="请输入商品价格"/>
         </div>
         <div class="form-group">
             <label>商品分类：</label>
+            <s:errors path="itemForm.categoryId"></s:errors>
             <select class="form-control" name="categoryId">
                 <c:forEach items="${categories}" var="category">
-                    <option value="${category.id}" <c:if test="${item.category.id==categoryId}">selected="selected"</c:if>>${category.name}</option>
+                    <option value="${category.id}" <c:if test="${itemForm.categoryId==categoryId}">selected="selected"</c:if>>${category.name}</option>
                 </c:forEach>
             </select>
         </div>
 
         <div class="form-group">
             <label>商品详情：</label>
+            <s:errors path="itemForm.detail"></s:errors>
             <script id="container" name="detail" type="text/plain"></script>
         </div>
         <div class="form-group">
             <input class="btn btn-default" type="submit" value="确定"/>
+        </div>
+        <div id="hideDiv" class="hide">
+
         </div>
     </form>
 </div>
@@ -66,6 +75,7 @@
             submitFile();
             return false;
         });
+
     });
     function initFile(file) {
         if(!file){
@@ -73,7 +83,8 @@
         }
         file.fileinput({
             showUpload:false,
-            browseLabel:"选择文件"
+            browseLabel:"选择文件",
+            removeLabel:"删除"
         });
     }
     function addFile() {
@@ -103,6 +114,10 @@
                     alert('上传失败！');
                 } else {
                     alert('上传成功');
+                    for(var i = 0 ; i < data.success.length ; ++i){
+                        var input = $('<input name="pictures" type="hidden" value="'+data.success[i]+'">');
+                        $('#hideDiv').append(input);
+                    }
                 }
             },
             error: function () {

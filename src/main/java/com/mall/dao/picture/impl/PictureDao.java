@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;
 import java.io.Serializable;
+import java.util.Collection;
 
 /**
  * Created by Jayson on 2014/8/19.
@@ -18,5 +19,9 @@ public class PictureDao implements IPictureDao {
     @Override
     public Serializable save(Picture picture) {
         return hibernateTemplate.save(picture);
+    }
+    @Override
+    public void saveOrUpdateAll(Collection<Picture> pictures) {
+        hibernateTemplate.saveOrUpdateAll(pictures);
     }
 }

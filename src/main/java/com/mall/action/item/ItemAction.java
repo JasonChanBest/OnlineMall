@@ -1,5 +1,6 @@
 package com.mall.action.item;
 
+import com.mall.form.item.AddItemForm;
 import com.mall.orm.category.Category;
 import com.mall.orm.item.Item;
 import com.mall.orm.picture.Picture;
@@ -8,6 +9,7 @@ import com.mall.service.item.IItemService;
 import com.mall.service.picture.IPictureService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -17,6 +19,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -63,28 +67,32 @@ public class ItemAction {
     }
 
     @RequestMapping("/add")
-    public String add(@Valid @ModelAttribute Item item , BindingResult result , int categoryId , String[] pictureNames , Model model){
+    public String add(@Valid @ModelAttribute("itemForm") AddItemForm itemForm , BindingResult result , Model model){
 
         if(result.hasErrors()){
+            List<Category> categories = categoryService.list();
+            model.addAttribute("categories" , categories);
             return ITEM_ADD;
         }
 
-        if(categoryId == 0){
-            model.addAttribute("item_category_id_error" , "商品分类为必填项");
-        }
+        Item item = new Item();
 
-        Category category = categoryService.get(categoryId);
+        BeanUtils.copyProperties(itemForm , item);
+
+        Category category = categoryService.get(itemForm.getCategoryId());
 
         item.setCategory(category);
 
         itemService.save(item);
 
-        for(String pictureName : pictureNames){
-            Picture picture = new Picture();
-            picture.setPath(pictureName);
-            picture.setItem(item);
-            pictureService.save(picture);
+        List<Picture> pictureList = new ArrayList<>();
+        for(String picture : itemForm.getPictures()){
+            Picture p = new Picture();
+            p.setPath(picture);
+            p.setItem(item);
+            pictureList.add(p);
         }
+        pictureService.saveOrUpdateAll(pictureList);
 
         return ITEM_ADD;
     }
