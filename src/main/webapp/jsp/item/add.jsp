@@ -67,15 +67,37 @@
 <script type="text/javascript" src="thirdpart/ueditor/ueditor.all.min.js"></script>
 
 <script type="text/javascript">
+    var editor;
     $(function () {
         initFile();
-        var editor = UE.getEditor('container');
+        editor = UE.getEditor('container');
         $('#addFileBtn').click(addFile);
         $('#addPictureForm').submit(function () {
             submitFile();
             return false;
         });
-
+        $('#addItemForm').submit(function () {
+            var name = $('input[name="name"]').val();
+            if(name == ''){
+                alert('未输入商品名称');
+                return false;
+            }
+            var price = $('input[name="price"]').val();
+            if(price == ''){
+                alert('未输入商品价格');
+                return false;
+            }
+            var categoryId = $('select[name="categoryId"]').val();
+            if(!categoryId){
+                alert('未选择商品分类');
+                return false;
+            }
+            var detail = editor.getContent();
+            if(detail == ''){
+                alert('未输入商品详情');
+                return false;
+            }
+        });
     });
     function initFile(file) {
         if(!file){

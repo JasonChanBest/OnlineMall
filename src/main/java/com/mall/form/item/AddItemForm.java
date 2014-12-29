@@ -5,6 +5,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 /**
@@ -17,6 +18,7 @@ public class AddItemForm {
     @NotBlank(message = "商品名称不能为空")
     private String name;
 
+    @NotNull(message = "价格应大于0.1")
     @DecimalMin(value = "0.1" , message = "价格应大于0.1")
     private float price;
 
