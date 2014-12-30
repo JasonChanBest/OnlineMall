@@ -18,3 +18,7 @@ http://malsup.com/jquery/form/#getting-started
 
 jquery
 http://jquery.com/
+
+bootstrapvalidator
+http://formvalidation.io/
+

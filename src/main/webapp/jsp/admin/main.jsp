@@ -7,10 +7,14 @@
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="thirdpart/bootstrap-3.2.0-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="thirdpart/bootstrap-3.2.0-dist/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="thirdpart/bootstrapvalidator-dist-0.5.3/css/bootstrapValidator.min.css">
+
     <script type="text/javascript" src="thirdpart/jquery/jquery-1.11.1.min.js"></script>
     <script type="text/javascript" src="thirdpart/bootstrap-3.2.0-dist/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="js/common.js"></script>
     <script type="text/javascript" src="thirdpart/jquery.form/jquery.form.min.js"></script>
+    <script type="text/javascript" src="thirdpart/bootstrapvalidator-dist-0.5.3/js/bootstrapValidator.min.js"></script>
+    <script type="text/javascript" src="thirdpart/bootstrapvalidator-dist-0.5.3/js/language/zh_CN.js"></script>
     <title>Online Mall管理系统</title>
 </head>
 <body>

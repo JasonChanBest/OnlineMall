@@ -25,21 +25,21 @@
         </div>
     </form>
 
-    <form id="addItemForm" action="admin/item/add.do" method="post" role="form" ajax="#mainDiv">
-        <s:errors path="*"></s:errors>
+    <form id="addItemForm" action="admin/item/add.do" method="post" role="form" ajax="#mainDiv" before="addItemFormBefore();">
+        <s:errors path="itemForm.pictures" cssClass="red"></s:errors>
         <div class="form-group">
             <label>商品名称：</label>
-            <s:errors path="itemForm.name"></s:errors>
-            <input class="form-control" type="text" value="${itemForm.name}" name="name" placeholder="请输入商品名称"/>
+            <s:errors path="itemForm.name" cssClass="red"></s:errors>
+            <input class="form-control" type="text" value="${itemForm.name}" name="name" placeholder="请输入商品名称" datatype="s6-18" errormsg="昵称至少6个字符,最多18个字符！" />
         </div>
         <div class="form-group">
             <label>商品价格：</label>
-            <s:errors path="itemForm.price"></s:errors>
-            <input class="form-control" type="number" value="${itemForm.price}" name="price" placeholder="请输入商品价格"/>
+            <s:errors path="itemForm.price" cssClass="red"></s:errors>
+            <input class="form-control" value="${itemForm.price}" name="price" placeholder="请输入商品价格"/>
         </div>
         <div class="form-group">
             <label>商品分类：</label>
-            <s:errors path="itemForm.categoryId"></s:errors>
+            <s:errors path="itemForm.categoryId" cssClass="red"></s:errors>
             <select class="form-control" name="categoryId">
                 <c:forEach items="${categories}" var="category">
                     <option value="${category.id}" <c:if test="${itemForm.categoryId==categoryId}">selected="selected"</c:if>>${category.name}</option>
@@ -49,7 +49,7 @@
 
         <div class="form-group">
             <label>商品详情：</label>
-            <s:errors path="itemForm.detail"></s:errors>
+            <s:errors path="itemForm.detail" cssClass="red"></s:errors>
             <script id="container" name="detail" type="text/plain"></script>
         </div>
         <div class="form-group">
@@ -68,6 +68,7 @@
 
 <script type="text/javascript">
     var editor;
+
     $(function () {
         initFile();
         editor = UE.getEditor('container');
@@ -76,26 +77,31 @@
             submitFile();
             return false;
         });
-        $('#addItemForm').submit(function () {
-            var name = $('input[name="name"]').val();
-            if(name == ''){
-                alert('未输入商品名称');
-                return false;
-            }
-            var price = $('input[name="price"]').val();
-            if(price == ''){
-                alert('未输入商品价格');
-                return false;
-            }
-            var categoryId = $('select[name="categoryId"]').val();
-            if(!categoryId){
-                alert('未选择商品分类');
-                return false;
-            }
-            var detail = editor.getContent();
-            if(detail == ''){
-                alert('未输入商品详情');
-                return false;
+        $('#addItemForm').bootstrapValidator({
+            fields:{
+                name:{
+                    validators:{
+                        notEmpty:{
+                            message:'未输入商品名称'
+                        }
+                    }
+                },
+                price:{
+                    message:'商品价格不正确',
+                    validators:{
+                        notEmpty:{},
+                        regexp:{
+                            regexp:/^\d+(\.\d{1,2})?$/
+                        }
+                    }
+                },
+                categoryId:{
+                    validators:{
+                        notEmpty:{
+                            message:"未选择商品分类"
+                        }
+                    }
+                }
             }
         });
     });
@@ -146,5 +152,17 @@
                 alert('连接服务器失败！');
             }
         });
+    }
+    function addItemFormBefore() {
+        if(editor.getContent() == ''){
+            alert('未输入商品详情');
+            return false;
+        }
+        if($(':hidden[name="pictures"]').length < 1){
+            alert('未上传图片');
+            return false;
+        }
+        var bootstrapValidator = $('#addItemForm').data('bootstrapValidator');
+        return bootstrapValidator.isValid();
     }
 </script>

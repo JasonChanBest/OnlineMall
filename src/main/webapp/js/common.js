@@ -30,6 +30,9 @@ function initPage(container) {
         var selector = form.attr('ajax');
         var container = $(selector);
         form.ajaxSubmit({
+            beforeSubmit: function () {
+              return eval(form.attr('before'));
+            },
             success: function (data) {
                 container.html(data);
                 initPage(container);
