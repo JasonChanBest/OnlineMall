@@ -17,6 +17,9 @@
         <servlet.version>3.1.0</servlet.version>
         <mysql.version>5.1.31</mysql.version>
         <fastjson.version>1.2.3</fastjson.version>
+        <junit.version>4.12</junit.version>
+        <cglib.version>3.1</cglib.version>
+        <aspectj.version>1.8.4</aspectj.version>
     </properties>
 
     <dependencies>
@@ -62,6 +65,35 @@
             <version>${spring.version}</version>
         </dependency>
         <!--spring依赖end-->
+
+        <!--aspectj依赖begin-->
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjrt</artifactId>
+            <version>${aspectj.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>${aspectj.version}</version>
+        </dependency>
+        <!--aspectj依赖end-->
+
+        <!--cglib依赖begin-->
+        <dependency>
+            <groupId>cglib</groupId>
+            <artifactId>cglib</artifactId>
+            <version>${cglib.version}</version>
+        </dependency>
+        <!--cglib依赖begin-->
+
+        <!--junit依赖begin-->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+        </dependency>
+        <!--junit依赖begin-->
 
         <!--hibernate依赖begin-->
         <dependency>
